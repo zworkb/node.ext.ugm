@@ -1,7 +1,7 @@
 from node.interfaces import IInvalidate
 from node.interfaces import ILeaf
 from node.interfaces import INode
-from zope.interface import Attribute
+from zope.interface import Attribute, Interface
 
 
 class IPrincipal(INode):
@@ -171,6 +171,15 @@ class IUsers(IPrincipals):
         newpw
             New password.
         """
+
+# Firebase
+
+class IAuthenticater(Interface):
+    def authenticate(uid, pwd):
+        ...
+
+    # create_user_on_first_login = Attribute(bool)
+
 
 
 class IGroups(IPrincipals):

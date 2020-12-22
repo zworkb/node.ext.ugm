@@ -184,7 +184,15 @@ class Users(Principals):
             'Abstract ``Users`` does not implement ``id_for_login``')
 
     @default
-    def authenticate(self, id=None, pw=None):
+    def authenticate(self, id=None, pw=None, authenticater=None):
+        """
+        :param authenticater: IAuthenticater
+        check for authenticator
+        lookup mit getAdapter
+        named adapter
+        wird in konkreter implementation mit super() aufgerufen
+
+        """
         raise NotImplementedError(
             'Abstract ``Users`` does not implement ``authenticate``')
 
