@@ -174,7 +174,8 @@ class IUsers(IPrincipals):
 
 # Firebase
 
-class IAuthenticater(Interface):
+class IAuthenticator(Interface):
+
     def authenticate(uid, pwd):
         ...
 
