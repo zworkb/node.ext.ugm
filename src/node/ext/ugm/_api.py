@@ -185,19 +185,9 @@ class Users(Principals):
 
     @default
     def authenticate(self, id=None, pw=None, authenticator=None):
-        """
-        :param authenticator: IAuthenticator
-        check for authenticator
-        lookup mit getAdapter
-        named adapter
-        wird in konkreter implementation mit super() aufgerufen
 
-        """
-        if authenticator:
-            authenticator.authenticate(id, pwd)
-        else:
-            raise NotImplementedError(
-                'Abstract ``Users`` does not implement ``authenticate``')
+        raise NotImplementedError(
+            'Abstract ``Users`` does not implement ``authenticate``')
 
     @default
     def passwd(self, id, oldpw, newpw):

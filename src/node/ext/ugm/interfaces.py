@@ -1,7 +1,8 @@
 from node.interfaces import IInvalidate
 from node.interfaces import ILeaf
 from node.interfaces import INode
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class IPrincipal(INode):
@@ -135,7 +136,20 @@ class IPrincipals(INode, IInvalidate):
         """
 
 
-class IUsers(IPrincipals):
+class IAuthenticator(Interface):
+
+    def authenticate(id=None, pw=None):
+        """Authenticate user with id.
+
+        id
+            User id
+
+        pw
+            User password
+        """
+
+
+class IUsers(IPrincipals, IAuthenticator):
     """Interface describing a users container.
 
     Child objects must implement IUser.
@@ -146,16 +160,6 @@ class IUsers(IPrincipals):
 
         login
             The login name
-        """
-
-    def authenticate(id=None, pw=None):
-        """Authenticate user with id.
-
-        id
-            User id
-
-        pw
-            User password
         """
 
     def passwd(id, oldpw, newpw):
@@ -173,14 +177,6 @@ class IUsers(IPrincipals):
         """
 
 # Firebase
-
-class IAuthenticator(Interface):
-
-    def authenticate(uid, pwd):
-        ...
-
-    # create_user_on_first_login = Attribute(bool)
-
 
 
 class IGroups(IPrincipals):
